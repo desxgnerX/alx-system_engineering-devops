@@ -1,2 +1,2 @@
 #!/bin/bash
-find -iname '*.html' -exec cp {} /alx-system_engineering-devops/ \;
+find -iname '*.html' -exec cp {} .. \
