@@ -1,2 +1,2 @@
 #!/bin/bash
-mv * *[A-Z]* target/tmp/u
+[[:upper:]]* /tmp/u
