@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -vxapmF
+ls -vxapmF --file-type
