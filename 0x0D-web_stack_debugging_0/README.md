@@ -1,7 +1,5 @@
 0x0D. Web stack debugging #0
 
-    By Sylvain Kalache, co-founder at Holberton School
-
 Concepts
 
 For this project, students are expected to look at these concepts:
