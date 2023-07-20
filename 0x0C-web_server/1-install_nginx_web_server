@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Installs Nginx with the following configurations:
 ## server
 ## Nginx should be listening on port 80
@@ -8,19 +8,25 @@
 ### to respect above requirements (this script will be run on the server itself)
 ## You can’t use systemctl for restarting nginx
 
-apt-get -y update
-apt-get -y install nginx
+# Update the package list
+apt-get update
 
-touch /var/www/html/index.html
-echo "Hello World!" > /var/www/html/index.html
+# Install Nginx
+apt-get install -y nginx
 
-printf %s "server {
-    listen		80 default_server;
-    listen		[::]:80 default_server;
+# Start Nginx (no need to use systemctl)
+service nginx start
 
-    root		/var/www/html;
-    index		index.html index.htm index.nginx-debian.html;
+# Configure Nginx to listen on port 80 and return "Hello World!" for requests to the root /
+cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80;
+    server_name _;
+    location / {
+        echo "Hello World!";
+    }
 }
-" > /etc/nginx/sites-available/default
+EOF
 
-service nginx restart
+# Reload Nginx to apply the configuration
+service nginx reload
