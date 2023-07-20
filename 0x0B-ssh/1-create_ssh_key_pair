@@ -1,4 +1,25 @@
-#!/usr/bin/env bash
-# a Bash script that creates an RSA key pair
+#!/bin/bash
 
-ssh-keygen -t rsa -f school -b 4096 -N betty
+# Bash script to create an RSA key pair
+
+private_key_name="school"
+key_length=4096
+passphrase="betty"
+
+# Check if the private key already exists
+if [ -f "$private_key_name" ]; then
+  echo "Private key '$private_key_name' already exists. Aborting."
+  exit 1
+fi
+
+# Generate the RSA key pair
+ssh-keygen -t rsa -b "$key_length" -N "$passphrase" -f "$private_key_name"
+
+# Check if the key generation was successful
+if [ $? -eq 0 ]; then
+  echo "RSA key pair successfully created."
+  echo "Private key: ${private_key_name}"
+  echo "Public key: ${private_key_name}.pub"
+else
+  echo "Error creating the RSA key pair."
+fi
