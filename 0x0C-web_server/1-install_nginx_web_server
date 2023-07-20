@@ -11,7 +11,6 @@
 apt-get -y update
 apt-get -y install nginx
 
-touch /var/www/html/index.html
 echo "Hello World!" > /var/www/html/index.html
 
 printf %s "server {
@@ -23,4 +22,4 @@ printf %s "server {
 }
 " > /etc/nginx/sites-available/default
 
-service nginx restart
+service nginx reload
