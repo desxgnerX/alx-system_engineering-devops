@@ -21,7 +21,7 @@ service nginx start
 cat <<EOF > /etc/nginx/sites-available/default
 server {
     listen 80;
-    default_server;
+    ubuntu;
     location / {
         echo "Hello World!";
     }
